@@ -21,7 +21,7 @@ Merge instructions: your lane README under `examples/{codex,claude,cursor}/`.
 - [ ] `referee-checklist` skill
 - [ ] `replication-checker` skill
 - [ ] `research-sdd` or `paper-polisher` skill
-- [ ] `identification-reviewer` subagent (Claude/Cursor) or identification pass via skill (Codex)
+- [ ] `identification-data-reviewer` subagent or identification pass via skill
 - [ ] `verifier` subagent where supported
 - [ ] One hook pack (Codex/Claude/Cursor)
 - [ ] (Cursor) Review `mcp.json.example` — optional FRED row in data map
@@ -29,7 +29,7 @@ Merge instructions: your lane README under `examples/{codex,claude,cursor}/`.
 ## Step-by-step: skills
 
 ```text
-List the skills in my project's .codex/ or .claude/ or .cursor/skills/ folder.
+List the skills in my project's .agents/skills, .claude/skills, or .cursor/skills folder.
 Explain when to use research-sdd vs referee-checklist vs replication-checker.
 ```
 
@@ -41,7 +41,7 @@ Run the replication-checker skill on this repo root. Report green/yellow/red.
 
 ## Step-by-step: hooks
 
-Use disposable copy first. Codex: `examples/hooks/`. Claude: `settings.example.json`.
+Use disposable copy first. Codex: `examples/codex/.codex/`. Claude: `settings.example.json`.
 Cursor: `examples/cursor/.cursor/hooks.json`.
 
 ## Step-by-step: long-running goal
@@ -58,12 +58,12 @@ Allowed: src/, tables/, paper/, docs/. Forbidden: data/raw/.
 
 ### Codex CLI
 
-- Merge `.codex/skills/` from [`examples/codex/`](../examples/codex/README.md).
+- Merge `.agents/skills/` and `.codex/agents/` from [`examples/codex/`](../examples/codex/README.md).
 - `/hooks` to trust; `/goal` for long tasks.
 
 ### Codex app
 
-- Same `.codex/` as CLI; trust hooks in UI.
+- Same harness files as CLI; trust hooks in UI.
 
 ### Claude Code CLI
 

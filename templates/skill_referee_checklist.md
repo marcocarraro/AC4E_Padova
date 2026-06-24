@@ -45,6 +45,6 @@ Review an economics paper draft as a pre-submission critic.
 
 | Lane | Path | Invoke |
 | --- | --- | --- |
-| Codex CLI / app | `.codex/skills/referee-checklist/SKILL.md` | Name in prompt or slash menu (app) |
+| Codex CLI / app | `.agents/skills/referee-checklist/SKILL.md` | Name in prompt or slash menu (app) |
 | Claude CLI / app | `.claude/skills/referee-checklist/SKILL.md` | Name in prompt or `/` menu (app) |
 | Cursor | `.cursor/skills/referee-checklist/SKILL.md` | Slash menu or explicit prompt |

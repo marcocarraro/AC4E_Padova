@@ -1,0 +1,17 @@
+# Example Codex MCP registration for a FRED/public-data metadata server.
+# Copy only the relevant block into .codex/config.toml.
+# Keep API keys in the environment; do not commit secrets.
+#
+# Official docs checked 2026-06-24: https://developers.openai.com/codex/mcp/
+
+[mcp_servers.fred]
+command = "python3"
+args = ["-m", "fred_mcp_server"]
+env_vars = ["FRED_API_KEY"]
+
+# Teaching note:
+# - This is a config example, not a bundled server implementation.
+# - Issue #9 in this workshop track is responsible for adding or validating the
+#   FRED/public-data MCP server itself.
+# - A Card-Krueger task can use FRED metadata for macro context, but the bundled
+#   synthetic panel remains the only runnable local dataset in this repo.

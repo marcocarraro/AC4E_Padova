@@ -1,0 +1,41 @@
+{
+  "_comment": "Illustrative Codex hooks for economics research. Copy to .codex/hooks.json, read every hook script, then review and trust with /hooks before use.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .codex/hooks/session_start_context.py",
+            "statusMessage": "Loading economics research safety context"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .codex/hooks/pre_tool_use_policy.py",
+            "statusMessage": "Checking shell command against research safety policy"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash|Write|Edit|ApplyPatch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .codex/hooks/post_tool_use_review.py",
+            "statusMessage": "Checking whether verification evidence should be reported"
+          }
+        ]
+      }
+    ]
+  }
+}

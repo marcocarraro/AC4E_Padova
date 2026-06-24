@@ -70,7 +70,7 @@ Pick one tool family and follow the matching examples.
 
 | Lane | Files to inspect first |
 | --- | --- |
-| Codex CLI | `tool-lanes/codex-cli.md`, `examples/codex/README.md`, `examples/hooks/README.md` |
+| Codex CLI | `tool-lanes/codex-cli.md`, `examples/codex/README.md`, `agent-harness/codex/README.md` |
 | Codex app | `tool-lanes/codex-app.md`, then Codex CLI files as reference |
 | Claude Code CLI | `tool-lanes/claude-cli.md`, `examples/claude/README.md` |
 | Claude Code app | `tool-lanes/claude-app.md`, then Claude CLI files as reference |

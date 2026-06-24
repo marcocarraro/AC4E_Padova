@@ -34,10 +34,10 @@ version.
 | --- | --- | --- | --- | --- | --- |
 | Setup | yes | yes | yes | yes | yes |
 | Context file | `AGENTS.md` | `AGENTS.md` | `CLAUDE.md` | `CLAUDE.md` | `AGENTS.md`, rules |
-| Skills | `.codex/skills/` | `.codex/skills/` | `.claude/skills/` | `.claude/skills/` | `.cursor/skills/` |
-| Subagents/reviewers | documented target | documented target | `.claude/agents/` | `.claude/agents/` | `.cursor/agents/` |
+| Skills | `.agents/skills/` | `.agents/skills/` | `.claude/skills/` | `.claude/skills/` | `.cursor/skills/` |
+| Subagents/reviewers | `.codex/agents/` | `.codex/agents/` | `.claude/agents/` | `.claude/agents/` | `.cursor/agents/` |
 | Hooks | `.codex/hooks` | `.codex/hooks` | `.claude/hooks` | `.claude/hooks` | `.cursor/hooks.json` |
-| MCP | documented target | documented target | documented target | documented target | `.cursor/mcp.json.example` |
+| MCP | `.codex/config.toml` | `.codex/config.toml` | documented target | documented target | `.cursor/mcp.json.example` |
 | Loop/goal | `/goal` | app goal/thread | checkpoint/continue | app session/checkpoint | Agent checkpoints/cloud |
 | Cloud/background | Codex cloud/GitHub | Codex cloud/GitHub | web/background where available | desktop/web where available | Cloud Agent/background |
 | Review | `/review`, PR | `/review`, PR | subagent/PR | subagent/PR | review pane/Bugbot/PR |

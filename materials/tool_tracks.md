@@ -8,7 +8,7 @@ participant manuals live in [`tool-lanes/`](../tool-lanes/).
 | Lane | Tool | Surface | Detailed manual | Best fit |
 | --- | --- | --- | --- | --- |
 | A1 | Codex | CLI | [`tool-lanes/codex-cli.md`](../tool-lanes/codex-cli.md) | Terminal-first work, goals, GitHub handoff |
-| A2 | Codex | Desktop app | [`tool-lanes/codex-app.md`](../tool-lanes/codex-app.md) | App threads, visual review, same `.codex/` files |
+| A2 | Codex | Desktop app | [`tool-lanes/codex-app.md`](../tool-lanes/codex-app.md) | App threads, visual review, same harness files |
 | B1 | Claude Code | CLI | [`tool-lanes/claude-cli.md`](../tool-lanes/claude-cli.md) | Terminal-first Claude workflow |
 | B2 | Claude Code | Desktop app | [`tool-lanes/claude-app.md`](../tool-lanes/claude-app.md) | App sessions, visual diff review |
 | C | Cursor | IDE and CLI | [`tool-lanes/cursor.md`](../tool-lanes/cursor.md) | IDE-first work, rules, background/cloud agents |
@@ -30,10 +30,10 @@ same harness concepts to your own research project.
 | Harness need | Codex paths | Claude Code paths | Cursor paths |
 | --- | --- | --- | --- |
 | Project instructions | `AGENTS.md`, `examples/codex/AGENTS.md` | `CLAUDE.md`, `examples/claude/CLAUDE.md` | `AGENTS.md`, `.cursor/rules/*.mdc` |
-| Skills | `examples/codex/.codex/skills/` | `examples/claude/.claude/skills/` | `examples/cursor/.cursor/skills/` |
-| Subagents or reviewers | `examples/codex/.codex/agents/` after issue #6; use reviewer prompts until then | `examples/claude/.claude/agents/` | `examples/cursor/.cursor/agents/` |
-| Hooks | `examples/hooks/.codex/` | `examples/claude/.claude/settings.example.json` and hooks | `examples/cursor/.cursor/hooks.json` |
-| MCP | `examples/codex/.codex/mcp.json.example` after issue #9 | `.claude/settings.json` MCP entries after issue #9 | `examples/cursor/.cursor/mcp.json.example` |
+| Skills | `examples/codex/.agents/skills/` | `examples/claude/.claude/skills/` | `examples/cursor/.cursor/skills/` |
+| Subagents or reviewers | `examples/codex/.codex/agents/` | `examples/claude/.claude/agents/` | `examples/cursor/.cursor/agents/` |
+| Hooks | `examples/codex/.codex/hooks.json`, `examples/codex/.codex/hooks/` | `examples/claude/.claude/settings.example.json` and hooks | `examples/cursor/.cursor/hooks.json` |
+| MCP | `examples/codex/.codex/config.toml.example` now; issue #9 validates the server | `.claude/settings.json` MCP entries after issue #9 | `examples/cursor/.cursor/mcp.json.example` |
 | Loop or goal | `/goal`, app goal, `templates/long_running_goal_prompt.md` | checkpoints, `/loop` where available, `claude --continue` | Agent checkpoints, Cursor CLI resume, Cloud Agent |
 | Cloud/background | Codex cloud and GitHub review | Claude web/desktop/background sessions where available | Cursor Cloud Agent and background agents |
 | Review | `/review`, `/diff`, PR evidence | subagent review, diff, PR evidence | review pane, Bugbot/review where configured, PR evidence |

@@ -35,10 +35,10 @@ Do not edit files. Explain the workshop path and the first command I should run.
 | Need | Path or action |
 | --- | --- |
 | Context file | `AGENTS.md`, `templates/AGENTS_economics.md`, `examples/codex/AGENTS.md` |
-| Skills | `examples/codex/.codex/skills/` |
-| Subagents/reviewers | `examples/codex/.codex/agents/` after issue #6; until then use the reviewer prompt below |
-| Hooks | `examples/hooks/.codex/` copied to `.codex/` and trusted with `/hooks` |
-| MCP | `examples/codex/.codex/mcp.json.example` after issue #9; keep secrets in env vars |
+| Skills | `examples/codex/.agents/skills/` copied to `.agents/skills/` |
+| Subagents/reviewers | `examples/codex/.codex/agents/` copied to `.codex/agents/` |
+| Hooks | `examples/codex/.codex/hooks.json` and `examples/codex/.codex/hooks/`, trusted with `/hooks` |
+| MCP | `examples/codex/.codex/config.toml.example`; keep secrets in env vars |
 | Loop/goal | `/goal`, `templates/long_running_goal_prompt.md`, `codex resume --last` |
 | Cloud/GitHub | Issue comments for Codex cloud tasks; GitHub integration for review |
 | Review | `/diff`, `/review`, PR checklist, tests |
@@ -47,10 +47,12 @@ Do not edit files. Explain the workshop path and the first command I should run.
 
 ```bash
 cp -r examples/starter_article /path/to/my-article
-mkdir -p /path/to/my-article/.codex/skills
-cp -r examples/codex/.codex/skills/* /path/to/my-article/.codex/skills/
-cp examples/hooks/.codex/hooks.json /path/to/my-article/.codex/
-cp -r examples/hooks/.codex/hooks /path/to/my-article/.codex/
+mkdir -p /path/to/my-article/.agents /path/to/my-article/.codex
+cp -r examples/codex/.agents/skills /path/to/my-article/.agents/
+cp -r examples/codex/.codex/agents /path/to/my-article/.codex/
+cp examples/codex/.codex/hooks.json /path/to/my-article/.codex/
+cp -r examples/codex/.codex/hooks /path/to/my-article/.codex/
+cp examples/codex/.codex/config.toml.example /path/to/my-article/.codex/
 cp examples/codex/AGENTS.md /path/to/my-article/AGENTS.md
 ```
 

@@ -27,6 +27,13 @@ references in participant-facing Padova orientation files.
 - Codex subagents: <https://developers.openai.com/codex/subagents>
 - Codex MCP: <https://developers.openai.com/codex/mcp>
 
+Harness note checked on 2026-06-24: the Padova Codex lane uses
+`.agents/skills/` for skills, `.codex/agents/` for subagents, `.codex/hooks.json`
+plus `.codex/hooks/` for hooks, and `.codex/config.toml` for MCP configuration
+examples. Older Pavia issue text used `/config/hooks/`, `/config/mcp/`, and
+`/concepts/subagents/`; current official docs use `/hooks/`, `/mcp/`, and
+`/subagents/`.
+
 ## Claude Code
 
 - Claude Code overview: <https://code.claude.com/docs/en/overview>

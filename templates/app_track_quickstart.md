@@ -10,8 +10,8 @@ Artifact paths match the CLI tracks; only setup and resume differ.
 3. **New thread**; confirm working directory is the repo root.
 4. Copy `examples/codex/AGENTS.md` → root `AGENTS.md`.
 5. First prompt: inspect repo; do not edit files.
-6. Skills: `.codex/skills/referee-checklist/SKILL.md` (from `examples/codex/`).
-7. Hooks: copy `examples/hooks/.codex/`; run `/hooks` to trust in the UI.
+6. Skills: `.agents/skills/referee-checklist/SKILL.md` (from `examples/codex/`).
+7. Hooks: copy `examples/codex/.codex/hooks.json` and `examples/codex/.codex/hooks/`; run `/hooks` to trust in the UI.
 8. Outputs: save under `outputs/` (create the folder if needed).
 
 ## Claude Code app (B2)

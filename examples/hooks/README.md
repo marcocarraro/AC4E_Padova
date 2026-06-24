@@ -1,6 +1,10 @@
 # Hook Examples
 
-These examples are for teaching. Review them before installing.
+These examples are retained from the starter material for teaching hook concepts.
+For the full Codex Padova harness, use
+[`../codex/README.md`](../codex/README.md), which includes Codex skills,
+subagents, hooks, MCP configuration, goals, and orchestration prompts. Review any
+hook before installing it.
 
 Hooks run deterministic scripts during the agent lifecycle. They are useful
 for:
@@ -35,7 +39,7 @@ From a test repository root:
 
 ```bash
 mkdir -p .codex
-cp -R /path/to/AC4E_LSE_PhD_Students/examples/hooks/.codex/* .codex/
+cp -R /path/to/AC4E_Padova/examples/hooks/.codex/* .codex/
 codex
 ```
 
