@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "hooks": {
+    "postToolUse": [
+      {
+        "command": "python .cursor/hooks/verification_reminder.py"
+      }
+    ]
+  }
+}

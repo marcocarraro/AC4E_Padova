@@ -1,0 +1,22 @@
+---
+description: Economics research workflow rules for papers, data analysis, and replication.
+globs:
+  - "**/*.py"
+  - "**/*.R"
+  - "**/*.do"
+  - "**/*.tex"
+  - "**/*.md"
+alwaysApply: false
+---
+
+# Economics Research Rules
+
+- Never edit `data/raw/` without explicit user approval.
+- Do not fabricate citations, data sources, coefficients, or robustness results.
+- For causal claims, state the identifying assumption being used.
+- For regression code, report standard error choices and clustering.
+- For paper review, every major issue must cite a concrete location in the text,
+  table, equation, or code.
+- After running tests or analysis, summarize the command, result, and generated
+  files.
+

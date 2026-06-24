@@ -1,0 +1,5 @@
+# Exclude from Cursor agent context
+.env
+.env.*
+data/raw/confidential/
+notes/private/

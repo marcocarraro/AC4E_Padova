@@ -1,0 +1,21 @@
+.DS_Store
+.venv/
+venv/
+__pycache__/
+*.pyc
+node_modules/
+website/.vitepress/dist/
+website/.vitepress/cache/
+playwright-report/
+test-results/
+.env
+.env.*
+data/
+outputs/
+*.log
+*.tmp
+screenshots/
+.history
+.jj
+
+Antonio Mele's Zoom .mp4

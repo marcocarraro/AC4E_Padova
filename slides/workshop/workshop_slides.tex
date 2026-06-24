@@ -1,0 +1,414 @@
+% Agentic Coding for Economists — LSE PhD four-hour workshop
+% Build: latexmk -pdf workshop_slides.tex  (from slides/workshop/)
+
+\input{../shared/beamer_preamble}
+\newcommand{\modebox}[1]{\fcolorbox{courseblue}{white}{\small\textsf{#1}}}
+
+\title{Agentic Coding for Economists}
+\subtitle{LSE PhD Workshop — Research Article Harness}
+
+\begin{document}
+
+% =============================================================================
+\section{Title}
+% =============================================================================
+
+\begin{frame}{}
+  \begin{center}
+    {\LARGE \textbf{Agentic Coding for Economists}} \\
+    \vspace{0.5em}
+    {\large Four-hour hands-on workshop} \\
+    % {\small\WorkshopRepoUrl} \\
+    \vspace{0.75em}
+    Antonio Mele \\
+    Department of Economics, London School of Economics \\
+    \vspace{0.5em}
+    % {\footnotesize Adapted from the full course at \ParentCourseUrl}
+  \end{center}
+\end{frame}
+
+\begin{frame}{How We Teach Today}
+  \begin{block}{Demo-first rhythm}
+    \begin{enumerate}
+      \item \textbf{Short demo ($\leq$8 min):} \textnormal{One tactical workflow, live.}
+      \item \textbf{Hands-on sprint:} \textnormal{You produce a file in \emph{your} \artifact{starter\_article} copy.}
+      \item \textbf{Debrief:} \textnormal{What did the agent do vs what did you sign off?}
+    \end{enumerate}
+  \end{block}
+  \vspace{0.3em}
+  % \begin{itemize}
+  %   \item \textbf{One mini repo all day:} \textnormal{Not scattered exercises in the course repo only.}
+  %   \item \textbf{Economics thread:} \textnormal{Remote-work DiD demo; identification is teachable, not outsourced.}
+  %   \item \textbf{Ethics:} \textnormal{No confidential referee manuscripts in AI tools.}
+  % \end{itemize}
+\end{frame}
+
+% =============================================================================
+\section{Agentic Coding}
+% =============================================================================
+
+\begin{frame}{What is Agentic Coding?}
+  \begin{block}{Definition}
+    \concept{Agentic coding} = delegating implementation work to AI agents that \textbf{read}, \textbf{plan}, \textbf{edit}, and \textbf{verify}---while you orchestrate scope, context, and quality gates.
+  \end{block}
+  \vspace{0.4em}
+  \begin{itemize}
+    \item \textbf{Agents} \textnormal{operate on your codebase with \emph{tools}: edit files, run terminal commands, search the repo (and optionally the web).}
+    \item \textbf{You} \textnormal{control what they see (context files, attachments, web resources) and how they behave (the harness: \artifact{AGENTS.md}, rules, skills, hooks, ...).}
+    \item \textbf{Output} \textnormal{must be \emph{verifiable}: tests pass, replication is valid, acceptance criteria achieved.}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{The Agent Loop}
+  \begin{center}
+    \begin{tikzpicture}[
+        node distance=1.1cm,
+        loopbox/.style={rectangle, draw, rounded corners, minimum width=2.1cm, minimum height=0.65cm, align=center, font=\small},
+        arr/.style={-Stealth, thick}
+      ]
+      \node[loopbox, fill=courseblue!15] (read) {Read\\context};
+      \node[loopbox, right=of read] (plan) {Plan};
+      \node[loopbox, right=of plan] (act) {Act\\tools};
+      \node[loopbox, right=of act] (verify) {Verify};
+      \draw[arr] (read) -- (plan) -- (act) -- (verify);
+      \draw[arr] (verify.north) .. controls +(0,0.55) and +(0,0.55) .. (read.north);
+    \end{tikzpicture}
+  \end{center}
+  \vspace{0.35em}
+  {\small
+  \begin{itemize}
+    \item \textbf{Read} \textnormal{--- Project brief, \artifact{AGENTS.md}, attached files, search results. Bad context $\Rightarrow$ bad code/output.}
+    \item \textbf{Plan} \textnormal{--- Break work into steps (Plan mode, specifications, requirements, tasks, explicit goal).}
+    \item \textbf{Act} \textnormal{--- Edit code, run code/tests, execute terminal commands, update paper write up.}
+    \item \textbf{Verify} \textnormal{--- Re-run scripts, check replication pipeline, etc.}
+  \end{itemize}}
+\end{frame}
+
+\begin{frame}{Why Economists Need This}
+  \begin{itemize}
+    \item \textbf{Pipeline complexity:} \textnormal{Data $\to$ cleaning $\to$ estimation $\to$ tables $\to$ paper---dozens of small, automatable steps.}
+    \item \textbf{Reproducibility pressure:} \textnormal{Journals and replicators expect documented data, portable paths, one-command runs.}
+    \item \textbf{Multi-artifact projects:} \textnormal{Code, LaTeX, appendix, and replication package must stay consistent.}
+    \item \textbf{This workshop:} \textnormal{Build a \emph{harness} you can fork onto a research project, not just one-off chat prompts.}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{What is a Research Article Harness?}
+  \begin{block}{Harness}
+    A \textbf{project template} where context files, skills, subagents, hooks, and verification gates work together across the research lifecycle, from idea to replication.
+  \end{block}
+  \vspace{0.3em}
+  
+  \vspace{0.3em}
+  \begin{itemize}
+    \item \textbf{Not} \textnormal{a single magic prompt.}
+    \item \textbf{Is} \textnormal{repeatable infrastructure: the agent always knows the repo map, boundaries, and how to run checks.}
+    \item \textbf{Can} \textnormal{be adapted to other research projects.}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Harness Lifecycle (Workshop Spine)}
+  \begin{center}
+    \begin{tikzpicture}[
+        node distance=0.55cm and 0.35cm,
+        phase/.style={rectangle, draw, rounded corners, minimum height=0.75cm, align=center, font=\scriptsize},
+        arr/.style={-Stealth, thick}
+      ]
+      \node[phase, fill=courseblue!15, minimum width=2.1cm] (s) {Scaffold\\Module 1};
+      \node[phase, fill=courseteal!15, minimum width=2.1cm, right=of s] (h) {Harness\\Module 2};
+      \node[phase, fill=courseblue!15, minimum width=2.1cm, right=of h] (p) {Pipeline\\Module 3};
+      \node[phase, fill=courseteal!15, minimum width=2.1cm, right=of p] (q) {Quality\\Module 4};
+      \node[phase, fill=courseblue!15, minimum width=2.1cm, right=of q] (o) {Sign-off\\Module 5};
+      \draw[arr] (s) -- (h) -- (p) -- (q) -- (o);
+    \end{tikzpicture}
+  \end{center}
+  \vspace{0.35em}
+  {\small
+  \begin{itemize}
+    \item \textbf{Scaffold} \textnormal{--- Create repo, project idea/brief, \artifact{AGENTS.md}, privacy boundaries, three tasks.}
+    \item \textbf{Harness} \textnormal{--- Create skills, subagents, hooks, MCPs; run one long goal with stop conditions.}
+    \item \textbf{Pipeline} \textnormal{--- Update idea/brief, write and maintain code and paper.}
+    \item \textbf{Quality} \textnormal{--- Referee report, replication check}
+    \item \textbf{Sign-off} \textnormal{--- Checklist + 7-day adoption plan for your own research.}
+  \end{itemize}}
+\end{frame}
+
+\begin{frame}[fragile]{Demo: Coding Agent Interface}
+
+  
+      \textbf{A typical coding agent UI:}
+      \begin{itemize}
+        \item \textbf{Prompt/Chat:} Type a goal\\ (e.g., ``Clean \texttt{data.csv} and compute summary stats.'')
+        \item \textbf{Context} loaded: repo map, \texttt{AGENTS.md}, project brief.
+        \item \textbf{Artifacts:} View/edit code, instructions, logs, or generated files.
+        \item \textbf{Tools:} Run code, preview plots, test outputs {\scriptsize(e.g., buttons for ``Run All'', ``Test'', ``View PDF'').}
+      \end{itemize}
+      
+  
+  
+\end{frame}
+
+% =============================================================================
+\section{Harness vocabulary}
+% =============================================================================
+
+\begin{frame}{Project Context: \artifact{AGENTS.md}}
+  \begin{block}{What it is}
+    The ``front door'' for any agent: a human-readable brief at the repo root that loads every session.
+  \end{block}
+  \textbf{Typically includes:}
+  \begin{itemize}
+    \item \textbf{Research question} \textnormal{and stage (seminar draft, JMP, etc.)}
+    \item \textbf{Repository map} \textnormal{--- which folders agents may read or write}
+    \item \textbf{Verification commands} \textnormal{--- \texttt{pytest}, \texttt{estimate\_did.py}, \texttt{latexmk}}
+    \item \textbf{Do-not rules} \textnormal{--- e.g.\ never edit \artifact{data/raw/} without permission}
+  \end{itemize}
+  \vspace{0.25em}
+  \textbf{Claude lane:} \textnormal{may also use \artifact{CLAUDE.md}; keep \artifact{AGENTS.md} for collaborators.}
+\end{frame}
+
+\begin{frame}[fragile,t,shrink=5]{Example: \artifact{AGENTS.md} (HANK Macro)}
+  {\footnotesize Same pattern for applied micro, structural, or macro repos.}
+  \vspace{0.2em}
+  \begin{lstlisting}[basicstyle=\ttfamily, frame=single, backgroundcolor=\color{coursebg}]
+# AGENTS.md - HANK macro (illustrative)
+
+## Project
+HANK: monetary policy with heterogeneous households; seminar draft.
+
+## Repo map
+Read: src/, models/, data/processed/, docs/
+Write: src/, models/, docs/drafts/, output/
+Do NOT: data/raw/, output/confidential/, secrets/
+
+## Verify
+pytest src/ | python models/run_HANK.py | latexmk -pdf docs/paper.tex
+
+## Rules
+No raw-data edits without permission; no API keys or microdata in context.
+Tests must pass; document model changes in docs/; use a branch for review.
+  \end{lstlisting}
+\end{frame}
+
+
+\begin{frame}{Exercise: Create Your Own \artifact{AGENTS.md}}
+  \textbf{Exercise:} Draft an \artifact{AGENTS.md} for your own project.
+  \vspace{1em}
+
+  \begin{block}{Include the following sections}
+    \begin{itemize}
+      \item \textbf{Project:} Briefly state your project's research topic and stage.
+      \item \textbf{Repo map:} \textit{Which folders should your agent read or write?} What should be off-limits?
+      \item \textbf{Verify:} Specify at least one command to check code or outputs (e.g., \texttt{pytest}, \texttt{make}).
+      \item \textbf{Rules:} Any do-not rules, data boundaries, or requirements for contributors/agents?
+    \end{itemize}
+  \end{block}
+
+  \vspace{.5em}
+  {\small
+    \textbf{Tip:} Imagine onboarding a new research assistant (human or AI)---what context and boundaries do they need on their first day?}
+
+  \vspace{1em}
+  \textbf{(You can use the previous HANK macro example as a template!)}
+\end{frame}
+
+
+\begin{frame}{Research Spec: Brief and Design Memo}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.48\textwidth}
+      \textbf{Project Brief: \\ \artifact{docs/project\_brief.md}}
+      \begin{itemize}
+        \item \textbf{What:} \textnormal{Scope, audience, in/out of scope}
+        \item \textbf{Why:} \textnormal{Stops agents from ``helpfully'' expanding the paper}
+        \item \textbf{When:} \textnormal{At the beginning of the project, Module 1 --- personalize or keep demo}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \textbf{Design Memo: \\ \artifact{docs/research\_design\_memo.md}}
+      \begin{itemize}
+        \item \textbf{What:} \textnormal{Hypotheses, data, identification, risks/threats}
+        \item \textbf{Why:} \textnormal{Plan before code; hub for SDD-lite}
+        \item \textbf{When:} \textnormal{Beginning of the project, but maintained throughout, Module 3 --- identification section is human-owned}
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \vspace{1.35em}
+  \textbf{Spec-Driven Development: \\ \artifact{spec/intent.md}} \textnormal{--- optional; for ambitious projects (intent $\to$ requirements $\to$ design $\to$ tasks).}
+\end{frame}
+
+\begin{frame}{Exercise: Create Your Own Project Brief and Design Memo}
+  \textbf{Exercise:} Draft a project brief and design memo for your own project.
+  \vspace{1em}
+  \begin{block}{Project Brief}
+    \begin{itemize}
+      \item \textbf{What:} \textnormal{Scope, idea,audience, in/out of scope}
+      
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{Design Memo}
+    \begin{itemize}
+      \item \textbf{What:} \textnormal{Hypotheses, data, identification, risks/threats} \end{itemize}
+  \end{block}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Privacy Boundary: \artifact{.cursorignore} or \artifact{AGENTS.md}}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.48\textwidth}
+      \textbf{What it does:} \textnormal{Controls what the agent \emph{indexes} and may send as context.}
+      \begin{itemize}
+        \item \textbf{Privacy:} \textnormal{API keys, microdata, confidential drafts}
+        \item \textbf{Performance:} \textnormal{Large CSVs, PDFs, \texttt{.venv}}
+      \end{itemize}
+      \vspace{0.25em}
+      \textbf{Different from \texttt{.gitignore}:} \\
+      \texttt{.gitignore} = version control; \\
+      \artifact{.cursorignore} = AI context.
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{lstlisting}[style=bash, basicstyle=\ttfamily\tiny]
+data/raw/confidential/
+.env
+*.dta
+*_confidential*
+      \end{lstlisting}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{What Are Agent Skills?}
+  \textbf{Skills} extend the agent with \textbf{reusable workflows} stored as \artifact{SKILL.md} files.
+  \begin{itemize}
+    \item \textbf{Trigger:} \textnormal{The skill's \texttt{description} in YAML frontmatter matches your request.}
+    \item \textbf{vs subagents:} \textnormal{Skills augment the \emph{main} agent---no separate context window.}
+    \item \textbf{vs rules:} \textnormal{Rules are always-on constraints; skills are procedures you invoke.}
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{Exercise: Create Your Own Agent Skills}
+  \textbf{Exercise:} Create an agent skill for your own project.
+  \vspace{1em}
+  \begin{block}{Skill}
+    \begin{itemize}
+      \item \textbf{What:} \textnormal{Description, trigger, steps}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{What Are Subagents?}
+  \textbf{Subagents} are specialized assistants with their own \textbf{context window} and prompt.
+  \begin{itemize}
+    \item \textbf{Why:} \textnormal{Context isolation---a reviewer should not share the same ``implementation bias'' as the coder.}
+    \item \textbf{Format:} \textnormal{\artifact{.cursor/agents/*.md} or \artifact{.claude/agents/*.md} with YAML frontmatter + role prompt.}
+    \item \textbf{Invoke:} \textnormal{``Use identification-reviewer on the design memo only'' or tool-specific \texttt{/agents}.}
+  \end{itemize}
+  \vspace{0.35em}
+  
+\end{frame}
+
+
+\begin{frame}{Exercise: Create Your Own Subagent}
+  \textbf{Exercise:} Create a subagent for your own project.
+  \vspace{1em}
+  \begin{block}{Subagent}
+    \begin{itemize}
+      \item \textbf{What:} \textnormal{Description, trigger, steps}
+    \end{itemize}
+  \end{block}
+\end{frame}
+\begin{frame}{What Are Hooks?}
+  \textbf{Hooks} run \textbf{deterministic} scripts at lifecycle events (session start, before/after tool use).
+  \begin{itemize}
+    \item \textbf{Why:} \textnormal{LLMs forget; hooks enforce reminders (privacy, no \texttt{rm -rf}, run tests after edits).}
+    \item \textbf{Where:} \textnormal{\artifact{.codex/hooks.json}, Claude \texttt{settings.json}, \artifact{.cursor/hooks.json}.}
+    \item \textbf{Trust:} \textnormal{Codex \texttt{/hooks}; Claude settings UI---you approve what runs.}
+  \end{itemize}
+  \vspace{0.3em}
+  \textbf{Economics example:} \textnormal{After editing \artifact{src/}, hook reminds: ``Re-run \texttt{pytest} and replication-checker before claiming results.''}
+\end{frame}
+
+\begin{frame}{Long-Running Goals and Checkpoints}
+  \textbf{Problem:} \textnormal{One chat cannot hold a whole pipeline; context drifts.}
+
+  \textbf{Solution:} \textnormal{Explicit goals with \textbf{allowed paths}, \textbf{forbidden paths}, and \textbf{stop conditions}.}
+  \vspace{0.3em}
+  \begin{tabular}{@{}ll@{}}
+    \toprule
+    \textbf{Tool} & \textbf{Mechanism} \\
+    \midrule
+    Codex & \texttt{/goal} or goal UI; \texttt{codex resume} \\
+    Claude Code & Checkpoints; \texttt{/goal}; \texttt{claude --continue} (CLI only) \\
+    Cursor & Background agents; Agent checkpoints \\
+    \bottomrule
+  \end{tabular}
+  \vspace{1.35em}\\
+  
+\end{frame}
+
+\begin{frame}{Exercise: Write a Long-Running Goal}
+  \textbf{Exercise:} Draft a long-running goal for your project using the following template.
+  \vspace{0.8em}
+
+  \begin{block}{Long-Running Goal Template}
+    \begin{itemize}
+      \item \textbf{Goal:} \textnormal{(Describe your end goal or desired outcome clearly and concretely.)}
+      \item \textbf{Allowed paths:} \textnormal{(List productive actions the agent can take to achieve the goal.)}
+      \item \textbf{Forbidden paths:} \textnormal{(List actions or areas that are off-limits; e.g., avoid modifying published data, do not email external parties, etc.)}
+      \item \textbf{Stop conditions:} \textnormal{(Define clear stopping criteria, e.g., when the goal is achieved, a report is generated, all code passes tests, etc.)}
+    \end{itemize}
+  \end{block}
+  \vspace{1em}
+  \textbf{Tip:} Be explicit about boundaries and what success looks like. This helps both you and your agent stay aligned over time.
+\end{frame}
+
+\begin{frame}{MCP Servers}
+  \textbf{MCP} = Model Context Protocol --- a standard to connect agents to \textbf{external tools}.
+  \begin{itemize}
+    \item \textbf{What:} \textnormal{Cursor (or other hosts) invoke MCP servers; the agent sees structured tools (e.g.\ FRED API).}
+    \item \textbf{Config:} \textnormal{\artifact{mcp.json.example} $\to$ \artifact{.cursor/mcp.json}; API keys via environment variables, never in git.}
+    \item \textbf{When it helps:} \textnormal{Recurring macro series pulls, scoped filesystem access.}
+    \item \textbf{When to skip:} \textnormal{One-off downloads; workshop runs fine without FRED.}
+  \end{itemize}
+  \vspace{0.25em}
+  {\scriptsize\textit{Verify MCP setup in your Cursor version. Docs: \url{https://cursor.com/docs/context/mcp}}}
+\end{frame}
+
+\begin{frame}{Skills vs Subagents vs Main Agent}
+  \begin{center}
+    \begin{tabular}{@{}p{0.28\linewidth}p{0.62\linewidth}@{}}
+      \toprule
+      \textbf{Use} & \textbf{When} \\
+      \midrule
+      \textbf{Skill} & \textnormal{Single-purpose procedure (replication-check, referee pass, SDD plan)} \\
+      \textbf{Subagent} & \textnormal{Isolated review role; parallel second opinion on memo or PR} \\
+      \textbf{Main agent} & \textnormal{Orchestration, merging edits, deciding scope} \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \vspace{0.4em}
+  \textbf{Invoke explicitly:} \textnormal{``Run replication-checker on repo root'' beats ``check if this replicates.''}
+\end{frame}
+
+\begin{frame}[t,shrink=8]{Harness Components (Summary)}
+  \footnotesize
+  \begin{tabular}{@{}p{0.22\linewidth}p{0.72\linewidth}@{}}
+    \toprule
+    \textbf{Component} & \textbf{What it does (Cursor paths)} \\
+    \midrule
+    Project context & \textnormal{Always-on: \artifact{AGENTS.md}, \artifact{.cursor/rules/*.mdc}} \\
+    Research spec & \textnormal{Plan before code: brief, design memo, \artifact{spec/intent.md}} \\
+    Skills & \textnormal{Procedures: \artifact{.cursor/skills/referee-checklist/}, etc.} \\
+    Subagents & \textnormal{Isolated reviewers: \artifact{.cursor/agents/}} \\
+    Hooks & \textnormal{Deterministic guardrails: \artifact{.cursor/hooks.json}} \\
+    MCP & \textnormal{Optional external APIs: \artifact{.cursor/mcp.json}} \\
+    Gates & \textnormal{Evidence: \artifact{replication/README.md}, referee report in \artifact{outputs/}} \\
+    Orchestration log & \textnormal{Lightweight record: what you delegated vs reviewed (\artifact{notes/})} \\
+    \bottomrule
+  \end{tabular}
+\end{frame}
+
+
+\end{document}

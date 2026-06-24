@@ -1,0 +1,4 @@
+[features]
+goals = true
+hooks = true
+

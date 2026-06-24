@@ -1,0 +1,99 @@
+% Shared Beamer preamble — Agentic Coding for Economists (LSE PhD workshop)
+% Include via: \input{../shared/beamer_preamble}
+
+\documentclass[aspectratio=169,11pt]{beamer}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+
+\definecolor{courseblue}{RGB}{0,91,150}
+\definecolor{courseteal}{RGB}{0,150,136}
+\definecolor{coursegray}{RGB}{100,100,100}
+\definecolor{coursebg}{RGB}{245,245,250}
+\definecolor{codegreen}{RGB}{40,160,80}
+\definecolor{codepurple}{RGB}{120,60,180}
+\definecolor{codered}{RGB}{200,50,50}
+
+\setbeamercolor{structure}{fg=courseblue}
+\setbeamercolor{palette primary}{bg=courseblue,fg=white}
+\setbeamercolor{palette secondary}{bg=courseteal,fg=white}
+\setbeamercolor{title}{fg=courseblue}
+\setbeamercolor{frametitle}{fg=courseblue,bg=white}
+\setbeamercolor{block title}{bg=courseblue,fg=white}
+\setbeamercolor{block body}{bg=coursebg}
+\setbeamercolor{item}{parent=normal text}
+\setbeamercolor{itemize item}{fg=courseblue}
+\setbeamercolor{itemize subitem}{fg=courseblue!85!black}
+\setbeamercolor{itemize subsubitem}{fg=courseblue!70!black}
+\setbeamercolor{enumerate item}{fg=courseblue}
+\setbeamercolor{enumerate subitem}{fg=courseblue!85!black}
+\setbeamercolor{itemize/enumerate body}{parent=normal text}
+\setbeamercolor{itemize/enumerate subbody}{parent=normal text}
+\setbeamercolor{itemize/enumerate subsubbody}{parent=normal text}
+\setbeamercolor{alerted text}{fg=codered}
+
+\usefonttheme{professionalfonts}
+\setbeamerfont{title}{size=\Large,series=\bfseries}
+\setbeamerfont{frametitle}{size=\large,series=\bfseries}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc,fit}
+
+\lstset{
+  basicstyle=\ttfamily\scriptsize,
+  keywordstyle=\color{courseblue}\bfseries,
+  commentstyle=\color{codegreen}\itshape,
+  stringstyle=\color{codepurple},
+  breaklines=true,
+  frame=single,
+  backgroundcolor=\color{coursebg},
+  rulecolor=\color{coursegray!30},
+  numbers=none,
+  showstringspaces=false,
+  tabsize=2,
+}
+
+\lstdefinestyle{python}{language=Python,morekeywords={self,True,False,None}}
+\lstdefinestyle{bash}{language=bash,morekeywords={git,codex,cursor,python,pip,claude,latexmk,pytest}}
+\lstdefinestyle{markdown}{basicstyle=\ttfamily\scriptsize,frame=single,backgroundcolor=\color{coursebg}}
+
+\newcommand{\concept}[1]{\textcolor{courseblue}{\textbf{#1}}}
+\newcommand{\artifact}[1]{\texttt{\textcolor{courseteal}{#1}}}
+\newcommand{\timebox}[1]{\textcolor{coursegray}{\small\textsf{[#1]}}}
+\newcommand{\prompttext}[1]{%
+  \begin{minipage}{\linewidth}%
+    \colorbox{coursebg}{\parbox{\dimexpr\linewidth-2\fboxsep}{\ttfamily\footnotesize #1}}%
+  \end{minipage}%
+}
+\newcommand{\lanetag}[1]{\fcolorbox{courseblue}{white}{\small\textsf{#1}}}
+
+\newcommand{\WorkshopRepoUrl}{\url{https://github.com/meleantonio/AC4E_LSE_PhD_Students}}
+\newcommand{\ParentCourseUrl}{\url{https://github.com/meleantonio/AgenticCodingForEconomists}}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+      \usebeamerfont{author in head/foot}\insertshortauthor
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.34\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+      \usebeamerfont{title in head/foot}\insertshorttitle
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+      \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+      \insertframenumber{}/\inserttotalframenumber\hspace*{2ex}
+    \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+\author{Antonio Mele}
+\institute{Department of Economics \\ London School of Economics}
+\date{LSE PhD Workshop}

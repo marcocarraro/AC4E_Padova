@@ -1,0 +1,10 @@
+{
+  "install": "python3 -m pip install -r requirements.txt && npm install",
+  "terminals": [
+    {
+      "name": "Local Playwright form",
+      "command": "python3 -m http.server 8000 --directory examples/web-form"
+    }
+  ]
+}
+

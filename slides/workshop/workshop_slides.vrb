@@ -1,0 +1,22 @@
+\frametitle{Privacy Boundary: \artifact {.cursorignore} or \artifact {AGENTS.md}}
+\begin{columns}[T,onlytextwidth]
+    \begin{column}{0.48\textwidth}
+      \textbf{What it does:} \textnormal{Controls what the agent \emph{indexes} and may send as context.}
+      \begin{itemize}
+        \item \textbf{Privacy:} \textnormal{API keys, microdata, confidential drafts}
+        \item \textbf{Performance:} \textnormal{Large CSVs, PDFs, \texttt{.venv}}
+      \end{itemize}
+      \vspace{0.25em}
+      \textbf{Different from \texttt{.gitignore}:} \\
+      \texttt{.gitignore} = version control; \\
+      \artifact{.cursorignore} = AI context.
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{lstlisting}[style=bash, basicstyle=\ttfamily\tiny]
+data/raw/confidential/
+.env
+*.dta
+*_confidential*
+      \end{lstlisting}
+    \end{column}
+  \end{columns}

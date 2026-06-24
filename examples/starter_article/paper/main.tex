@@ -1,0 +1,51 @@
+\documentclass[11pt]{article}
+\usepackage{booktabs}
+\usepackage{natbib}
+\usepackage{graphicx}
+
+\title{Remote Work And Local Service Employment:\\Evidence From A City-Level Pilot}
+\author{Workshop Demo Author}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We study whether remote work reduces employment in local service sectors using a
+difference-in-differences design around a 2020 policy pilot. We find a large negative
+effect that is robust and permanent.
+\end{abstract}
+
+\section{Introduction}
+Remote work may reallocate demand away from central business districts.
+This draft uses synthetic workshop data; identification is discussed in
+\texttt{docs/research\_design\_memo.md}.
+
+\section{Empirical Strategy}
+We estimate
+\begin{equation}
+y_{ct} = \alpha_c + \gamma_t + \beta\, (\text{Treat}_c \times \text{Post}_t) + \varepsilon_{ct},
+\end{equation}
+with city and month fixed effects and standard errors clustered by city.
+
+\section{Results}
+Table~\ref{tab:main} reports the main specification. % TODO: \input{tables/main_did.tex}
+
+\begin{table}[ht]
+\centering
+\caption{Main DiD estimate (workshop output)}\label{tab:main}
+% \input{../tables/main_did.tex}
+\begin{tabular}{lc}
+\toprule
+Treat $\times$ Post & (see \texttt{tables/main\_did.tex}) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Conclusion}
+Policy implications are preliminary; see referee exercise for threats to identification.
+
+\bibliographystyle{aer}
+\bibliography{../references/bibliography}
+
+\end{document}
