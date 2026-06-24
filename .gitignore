@@ -12,6 +12,11 @@ test-results/
 .env.*
 data/
 outputs/
+!examples/card-krueger/data/
+!examples/card-krueger/data/synthetic_fast_food_panel.csv
+!examples/card-krueger/outputs/
+examples/card-krueger/outputs/*
+!examples/card-krueger/outputs/.gitkeep
 *.log
 *.tmp
 screenshots/
