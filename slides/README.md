@@ -1,8 +1,12 @@
-# Workshop slides (Beamer)
+# Workshop Slides (Beamer)
 
-LaTeX Beamer deck for the four-hour LSE PhD workshop. Canonical source:
+LaTeX Beamer deck for the 5-hour Padova workshop. Canonical source:
 
 - `slides/workshop/workshop_slides.tex`
+
+Slide-to-demo map:
+
+- `slides/workshop/demo_map.md`
 
 Shared theme and macros:
 
@@ -17,16 +21,20 @@ cd slides/workshop
 latexmk -pdf -interaction=nonstopmode workshop_slides.tex
 ```
 
-Output: `slides/workshop/workshop_slides.pdf` (about 45 slides, with explanatory frames for harness vocabulary)
+Output: `slides/workshop/workshop_slides.pdf`.
 
 Requirements: a TeX distribution with `latexmk`, Beamer, and TikZ (e.g. MacTeX or TeX Live).
 
 ## Instructor use
 
-Slides follow [`INSTRUCTOR_RUNBOOK.md`](../INSTRUCTOR_RUNBOOK.md) timing and demo prompts. Module detail lives in [`materials/`](../materials/) and on the VitePress site (`npm run docs:dev`).
+Slides follow [`SCHEDULE.md`](../SCHEDULE.md), [`GUIDE.md`](../GUIDE.md), and
+the demo order in [`slides/workshop/demo_map.md`](workshop/demo_map.md).
+Participant detail lives in [`materials/`](../materials/) and the example paths
+called out directly in the deck.
 
-After editing `.tex`, rebuild the PDF before delivery. If you publish markdown exports elsewhere, keep any `*_slides.md` companion in sync with the Beamer source.
+After editing `.tex`, rebuild the PDF before delivery.
 
-## Parent course
+## Source Notes
 
-The preamble and visual style align with [AgenticCodingForEconomists](https://github.com/antoniomele/AgenticCodingForEconomists) `slides/shared/beamer_preamble.tex`, adapted for the compressed harness-focused LSE session.
+The deck keeps the imported Beamer theme but is adapted to the Padova sequence
+and the Card-Krueger running example from `AC4E_Pavia`.
