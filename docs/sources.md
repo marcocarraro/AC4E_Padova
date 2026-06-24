@@ -44,18 +44,24 @@ examples. Older Pavia issue text used `/config/hooks/`, `/config/mcp/`, and
 - Claude Code hooks: <https://code.claude.com/docs/en/hooks>
 - Claude Code hooks guide: <https://code.claude.com/docs/en/hooks-guide>
 - Claude Code MCP: <https://code.claude.com/docs/en/mcp>
+- Claude Code goals: <https://code.claude.com/docs/en/goal>
+- Claude Code scheduled tasks and `/loop`: <https://code.claude.com/docs/en/scheduled-tasks>
+- Claude Code agent view: <https://code.claude.com/docs/en/agent-view>
 
 Harness note checked on 2026-06-24: the Padova Claude lane uses
 `.claude/skills/` for project skills, `.claude/agents/` for project subagents,
 `.claude/settings.json` for permissions and hooks, `.claude/hooks/` for hook
 scripts, and root `.mcp.json` for project MCP servers. Settings examples use
 `permissions.deny` and sandbox `filesystem.denyRead` / `denyWrite` for `.env`,
-secret, raw-data, and private-data paths.
+secret, raw-data, and private-data paths. `/goal` requires Claude Code
+v2.1.139 or later, and `/loop` / scheduled tasks require Claude Code v2.1.72 or
+later.
 
 ## Cursor
 
 - Cursor docs: <https://cursor.com/docs>
 - Cursor CLI overview: <https://cursor.com/docs/cli/overview>
+- Cursor headless CLI: <https://cursor.com/docs/cli/headless>
 - Cursor rules and AGENTS.md: <https://cursor.com/docs/rules>
 - Cursor rules markdown: <https://cursor.com/docs/rules.md>
 - Cursor skills: <https://cursor.com/docs/skills>
@@ -63,6 +69,12 @@ secret, raw-data, and private-data paths.
 - Cursor hooks: <https://cursor.com/docs/hooks>
 - Cursor MCP: <https://cursor.com/docs/mcp>
 - Cursor cloud agents: <https://cursor.com/docs/cloud-agent>
+- Cursor cloud-agent setup: <https://cursor.com/docs/cloud-agent/setup>
+- Cursor cloud-agent best practices: <https://cursor.com/docs/cloud-agent/best-practices>
+- Cursor cloud-agent security and network: <https://cursor.com/docs/cloud-agent/security-network>
+- Cursor cloud-agent capabilities: <https://cursor.com/docs/cloud-agent/capabilities>
+- Cursor GitHub integration: <https://cursor.com/docs/integrations/github>
+- Cursor Bugbot: <https://cursor.com/docs/bugbot>
 
 Harness note checked on 2026-06-24: the Padova Cursor lane uses
 `.cursor/rules/*.mdc` for project rules, `AGENTS.md` for simple shared
@@ -71,13 +83,17 @@ project subagents, and `.cursor/mcp.json` for project MCP servers. The MCP
 example uses Cursor interpolation (`${env:FRED_API_KEY}` and
 `${workspaceFolder}`). Hook examples live in `.cursor/hooks.json` plus
 `.cursor/hooks/`, but hook event support is version-sensitive and should be
-verified in the installed Cursor release before use.
+verified in the installed Cursor release before use. Cursor Bugbot and
+`/review` / `/review-bugbot` are repository-integration, plan, and version
+sensitive; the Bugbot docs describe those commands as available in Cursor 3.7+
+and on `cursor.com/agents`.
 
 ## MCP And Playwright
 
 - Model Context Protocol docs: <https://modelcontextprotocol.io/docs/getting-started/intro>
 - MCP specification: <https://modelcontextprotocol.io/specification/2025-06-18>
 - MCP stdio transport: <https://modelcontextprotocol.io/specification/2025-06-18/basic/transports>
+- MCP security best practices: <https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices>
 - FRED API documentation: <https://fred.stlouisfed.org/docs/api/fred/>
 - FRED API keys: <https://fred.stlouisfed.org/docs/api/api_key.html>
 - FRED series metadata endpoint: <https://fred.stlouisfed.org/docs/api/fred/series.html>
@@ -112,13 +128,23 @@ Checked on 2026-06-24 against official docs:
 - Claude Code project subagents live in `.claude/agents/` and are managed from
   `/agents`; project subagents can be checked into version control.
 - Cursor supports subagents across editor, CLI, and cloud-agent contexts. The
-  current docs describe `/in-cloud` for a cloud subagent on its own branch, and
-  note that cloud subagents use team MCP configuration rather than local
-  `.cursor/mcp.json`.
+  current docs note that cloud subagents use team MCP configuration rather than
+  local `.cursor/mcp.json`; verify the exact cloud entry point in the installed
+  Cursor release.
 
 The shared Padova templates therefore use GitHub issues, branch names, allowed
 files, forbidden files, acceptance criteria, evidence, reviewer prompts, and
 stop conditions instead of relying on one tool-specific UI.
+
+## GitHub Workflow
+
+- GitHub issues: <https://docs.github.com/en/issues/tracking-your-work-with-issues/learning-about-issues/about-issues>
+- GitHub pull requests: <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests>
+- Linking pull requests to issues: <https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue>
+
+Issue and PR workflow checked on 2026-06-24: the Padova cloud-agent workflow
+uses one issue per task, one branch per task, PR descriptions with evidence, and
+closing keywords only when the PR targets the repository default branch.
 
 ## Card-Krueger Running Example
 

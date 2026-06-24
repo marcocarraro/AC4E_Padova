@@ -1,6 +1,6 @@
 # Cursor Plugins (Optional)
 
-Not required for the four-hour workshop. Use when you want bundled hooks, skills, or doc-sync helpers.
+Not required for the five-hour workshop. Use when you want bundled hooks, skills, or doc-sync helpers.
 
 ## Examples
 

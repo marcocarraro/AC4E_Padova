@@ -12,8 +12,10 @@ Official docs checked on 2026-06-24:
 - Hooks: <https://cursor.com/docs/hooks>
 - MCP: <https://cursor.com/docs/mcp>
 - Cursor CLI: <https://cursor.com/docs/cli/overview>
+- Cursor headless CLI: <https://cursor.com/docs/cli/headless>
 - Cloud Agent: <https://cursor.com/docs/cloud-agent>
 - GitHub integration and review: <https://cursor.com/docs/integrations/github>
+- Bugbot: <https://cursor.com/docs/bugbot>
 
 ## Setup
 
@@ -42,7 +44,7 @@ first harness files to copy.
 | MCP | `examples/cursor/.cursor/mcp.json.example`; shared server in `agent-harness/mcp/fred/`; secrets through env vars |
 | Loop/goal | `agent-harness/cursor/goals/`, checkpoints, Cursor CLI resume, Cloud Agent handoff |
 | Cloud/background | `agent-harness/cursor/cloud-agent-prompts/`, Cursor Cloud Agent, background agents |
-| Review | review pane, Bugbot/review where configured, PR evidence |
+| Review | review pane, `/review` or Bugbot where enabled, PR evidence |
 
 ## Merge Steps
 
@@ -101,5 +103,8 @@ read-only reviewer subagent before PR review.
   frontmatter. The included reviewers use `model: inherit` and read-only mode.
 - Cursor MCP project configuration lives at `.cursor/mcp.json`; the example uses
   `${env:FRED_API_KEY}` and `${workspaceFolder}` interpolation.
-- Cloud Agent, Bugbot/review, hooks, and CLI features can depend on plan,
-  version, and workspace settings. Verify in the installed version.
+- Cloud Agent, Bugbot, hooks, and CLI features can depend on plan, version,
+  repository integration, and workspace settings. Cursor's Bugbot docs describe
+  `/review` and `/review-bugbot` as available in Cursor 3.7+ and on
+  `cursor.com/agents`; verify support in the installed version before using
+  those commands in class.

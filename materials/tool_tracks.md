@@ -36,14 +36,14 @@ same harness concepts to your own research project.
 | MCP | `examples/codex/.codex/config.toml.example` for bundled FRED server | `examples/claude/.mcp.json.example` for bundled FRED server | `examples/cursor/.cursor/mcp.json.example` for bundled FRED server |
 | Loop or goal | `/goal`, app goal, `templates/long_running_goal_prompt.md`, `orchestration/goals/` | checkpoints, `/loop` where available, `claude --continue`, `orchestration/goals/` | `agent-harness/cursor/goals/`, Agent checkpoints, Cloud Agent, `orchestration/goals/` |
 | Cloud/background | Codex cloud, GitHub review, `orchestration/cloud_agent_issue_template.md` | Claude web/desktop/background sessions where available, same issue contract | `agent-harness/cursor/cloud-agent-prompts/`, Cursor Cloud Agent, same issue contract |
-| Review | `/review`, `/diff`, PR evidence | subagent review, diff, PR evidence | review pane, Bugbot/review where configured, PR evidence |
+| Review | `/review`, `/diff`, PR evidence | subagent review, diff, PR evidence | review pane, `/review` or Bugbot where enabled, PR evidence |
 
 ## OS And Version Caveats
 
 - CLI paths are the fallback when a desktop app is unavailable or blocked.
 - Desktop/app labels change; verify UI labels in the installed version.
 - Hooks, MCP, cloud/background agents, and review integrations may require
-  account features, trust prompts, or quota.
+  account features, trust prompts, supported versions, or quota.
 - Store API keys in environment variables or local ignored files, never in the
   repository.
 

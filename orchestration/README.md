@@ -38,7 +38,7 @@ research article copy in `examples/starter_article/`.
 | --- | --- | --- |
 | Codex | Codex cloud tasks, GitHub `@codex`, `@codex review`, local/app goals, `.codex/agents/` reviewers. | Put branch, allowed files, forbidden files, evidence, and reviewer in the issue. |
 | Claude Code | Project subagents in `.claude/agents/`, `/agents`, hooks/settings, and checkpointed goals. | Keep project subagents versioned and make reviewer prompts read-only by default. |
-| Cursor | Cloud Agent, `/in-cloud` where available, background subagents, `.cursor/agents/`, rules, hooks, and MCP config. | Treat cloud/background agents as branch workers; keep team/cloud MCP configuration separate from local secrets. |
+| Cursor | Cloud Agent where available, background subagents, `.cursor/agents/`, rules, hooks, and MCP config. | Treat cloud/background agents as branch workers; keep team/cloud MCP configuration separate from local secrets. |
 
 Official docs for these claims were checked on 2026-06-24. See
 `../docs/sources.md` for the exact links and version caveats.
