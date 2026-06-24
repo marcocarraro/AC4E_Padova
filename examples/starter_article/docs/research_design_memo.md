@@ -23,7 +23,7 @@ remote work and local labor markets.]
 | Source | Synthetic workshop file `data/raw/city_month_panel.csv` |
 | Access | Public within repo |
 | Key variables | `log_emp`, `treat`, `post`, `city_id`, `month` |
-| Sample | 30 cities × 60 months |
+| Sample | 6 cities × 24 months |
 | Unit | City-month |
 
 ## Empirical strategy

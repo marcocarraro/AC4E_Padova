@@ -1,12 +1,12 @@
 """Tests for starter article DiD pipeline."""
 
 from pathlib import Path
-
-import pandas as pd
-
-from src.estimate_did import DATA_PATH, estimate_twfe, load_panel
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from src.estimate_did import DATA_PATH, estimate_twfe, load_panel  # noqa: E402
 
 
 def test_data_exists():

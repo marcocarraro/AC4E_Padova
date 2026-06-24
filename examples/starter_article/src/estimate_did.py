@@ -55,7 +55,7 @@ def write_main_table(results, path: Path = TABLES_DIR / "main_did.tex") -> None:
             r"\end{tabular}",
         ]
     )
-    path.write_text(text, encoding="utf-8")
+    path.write_text(text + "\n", encoding="utf-8")
 
 
 def main() -> None:

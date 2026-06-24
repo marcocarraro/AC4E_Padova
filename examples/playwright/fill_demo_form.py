@@ -148,7 +148,7 @@ def run_playwright(
     """Fill the local form and capture evidence."""
 
     try:
-        from playwright.sync_api import expect, sync_playwright
+        from playwright.sync_api import Error as PlaywrightError, expect, sync_playwright
     except ModuleNotFoundError as exc:
         raise SystemExit(
             "Playwright Python package is not installed. Run "
@@ -160,35 +160,52 @@ def run_playwright(
         screenshot_path.parent.mkdir(parents=True, exist_ok=True)
 
     with sync_playwright() as playwright:
-        browser = playwright.chromium.launch(headless=not headed)
-        page = browser.new_page()
-        page.goto(base_url, wait_until="domcontentloaded")
+        try:
+            browser = playwright.chromium.launch(headless=not headed)
+        except PlaywrightError as exc:
+            message = str(exc)
+            if "Executable doesn't exist" in message or "playwright install" in message:
+                raise SystemExit(
+                    "Playwright Chromium browser is not installed. Run "
+                    "`python3 -m playwright install chromium`, then retry. "
+                    "If browser binaries are unavailable in this environment, run "
+                    "`python3 -m py_compile examples/playwright/fill_demo_form.py` "
+                    "and record the missing browser as a yellow verification result."
+                ) from exc
+            raise
 
-        page.get_by_role("button", name="Start").click()
-        page.get_by_label("Source title").fill("Card-Krueger public data page")
-        page.get_by_label("URL or path").fill("https://davidcard.berkeley.edu/data_sets.html")
-        page.get_by_label("Access type").select_option("Public source page")
-        page.get_by_label("Variables or fields").fill(
-            "study page URL, data readme URL, access note"
-        )
-        page.get_by_label("Use in data source map").check()
-        page.get_by_role("button", name="Next").click()
+        try:
+            page = browser.new_page()
+            page.goto(base_url, wait_until="domcontentloaded")
 
-        page.get_by_label("Project").select_option("Card-Krueger teaching example")
-        page.get_by_label("Data sensitivity").select_option("Public metadata only")
-        page.get_by_label("Evidence note").fill(
-            "Record a source-map row; do not download or redistribute raw data."
-        )
-        page.get_by_role("button", name="Submit evidence").click()
+            page.get_by_role("button", name="Start").click()
+            page.get_by_label("Source title").fill("Card-Krueger public data page")
+            page.get_by_label("URL or path").fill(
+                "https://davidcard.berkeley.edu/data_sets.html"
+            )
+            page.get_by_label("Access type").select_option("Public source page")
+            page.get_by_label("Variables or fields").fill(
+                "study page URL, data readme URL, access note"
+            )
+            page.get_by_label("Use in data source map").check()
+            page.get_by_role("button", name="Next").click()
 
-        heading = page.get_by_role("heading", name="Evidence request received")
-        expect(heading).to_be_visible()
-        expect(page.get_by_text("Card-Krueger public data page")).to_be_visible()
+            page.get_by_label("Project").select_option("Card-Krueger teaching example")
+            page.get_by_label("Data sensitivity").select_option("Public metadata only")
+            page.get_by_label("Evidence note").fill(
+                "Record a source-map row; do not download or redistribute raw data."
+            )
+            page.get_by_role("button", name="Submit evidence").click()
 
-        if screenshot_path is not None:
-            page.screenshot(path=str(screenshot_path), full_page=True)
-        confirmation = page.get_by_test_id("confirmation-detail").text_content() or ""
-        browser.close()
+            heading = page.get_by_role("heading", name="Evidence request received")
+            expect(heading).to_be_visible()
+            expect(page.get_by_text("Card-Krueger public data page")).to_be_visible()
+
+            if screenshot_path is not None:
+                page.screenshot(path=str(screenshot_path), full_page=True)
+            confirmation = page.get_by_test_id("confirmation-detail").text_content() or ""
+        finally:
+            browser.close()
 
     evidence = Evidence(
         base_url=base_url,

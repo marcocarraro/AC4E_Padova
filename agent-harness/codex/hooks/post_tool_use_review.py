@@ -32,7 +32,7 @@ def main() -> int:
         r"\bpython3?\b.*examples/card-krueger",
         r"examples/card-krueger/.+did_analysis\.py",
         r"\bplaywright\b",
-        r"\bnpm\s+(test|run\s+docs:build)\b",
+        r"\bnpm\s+(test|run\s+(slides:build|pw:test|validate))\b",
     ]
 
     if any(re.search(pattern, text) for pattern in verification_patterns):

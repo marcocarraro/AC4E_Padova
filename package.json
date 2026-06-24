@@ -8,12 +8,9 @@
     "pw:codegen": "playwright codegen http://127.0.0.1:8000",
     "pw:test": "playwright test examples/playwright/data_source_form.spec.ts",
     "validate": "python3 scripts/validate_setup.py",
-    "docs:prebuild": "python3 scripts/build_site_tabs.py && python3 scripts/build_concepts_site.py",
-    "docs:dev": "npm --prefix website run dev",
-    "docs:build": "npm --prefix website run build",
     "slides:build": "cd slides/workshop && latexmk -pdf -interaction=nonstopmode workshop_slides.tex"
   },
   "devDependencies": {
-    "@playwright/test": "^1.61.1"
+    "@playwright/test": "~1.60.0"
   }
 }
