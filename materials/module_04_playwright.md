@@ -33,18 +33,43 @@ is acceptable for the workshop demo.
 
 ## Part C: Playwright data evidence (~20 min)
 
-Playwright is **terminal-only** for all lanes.
+Playwright is **terminal-only** for all lanes. The self-contained Python demo
+starts a local form server, fills the form, writes a markdown evidence file, and
+stops the server.
 
 ```bash
-python3 -m http.server 8000 --directory examples/web-form
-python examples/playwright/fill_demo_form.py
+python3 examples/playwright/fill_demo_form.py
 ```
 
-Add a row to `docs/data_source_map.md` linking the script output or screenshot path.
+Expected evidence:
+
+- `outputs/playwright_form_evidence.md`
+- `outputs/playwright_confirmation.png` unless `--no-screenshot` is used
+
+Copy the generated row into `docs/data_source_map.md` or the Card-Krueger
+equivalent in `examples/card-krueger/docs/data_source_map.md`.
+
+Manual server mode:
+
+Terminal 1:
+
+```bash
+python3 -m http.server 8000 --bind 127.0.0.1 --directory examples/web-form
+```
+
+Terminal 2:
+
+```bash
+python3 examples/playwright/fill_demo_form.py --no-server --base-url http://127.0.0.1:8000
+```
+
+Stop the manual server with `Ctrl-C`.
 
 ```text
-Read examples/playwright/fill_demo_form.py. Explain locators. Suggest one improvement
-if the form layout changes.
+Read examples/playwright/README.md and examples/playwright/fill_demo_form.py.
+Explain the locators, generated evidence file, and the data-source-map row. If
+browser binaries are unavailable, report the exact install blocker and run the
+documented py_compile smoke check.
 ```
 
 ## AI referee tools (discussion)

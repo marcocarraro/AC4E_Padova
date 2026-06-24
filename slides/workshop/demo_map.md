@@ -12,7 +12,7 @@ This map keeps the deck aligned with the participant repository sequence.
 | Tool lanes | Choose Codex, Claude Code, or Cursor path | `materials/tool_tracks.md`, `tool-lanes/`, `examples/{codex,codex-app,claude,claude-app,cursor}/` |
 | Orchestration | Turn a task into an issue, swarm, loop, and PR evidence plan | `orchestration/README.md`, `orchestration/cloud_agent_issue_template.md`, `orchestration/card_krueger_swarm.md`, `orchestration/verification_loop.md` |
 | Sprint | Edit one bounded artifact and record delegation | `notes/orchestration_log_template.md`, `examples/starter_article/notes/orchestration_log.md` |
-| Verification | Run tests or reviewer prompt; record result | `docs/research_article_harness.md`, `examples/card-krueger/tests/` |
+| Verification | Run tests, reviewer prompt, or Playwright evidence capture; record result | `docs/research_article_harness.md`, `examples/card-krueger/tests/`, `examples/playwright/README.md`, `examples/web-form/` |
 
 ## Build Evidence To Record In PRs
 

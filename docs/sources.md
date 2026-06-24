@@ -85,6 +85,7 @@ verified in the installed Cursor release before use.
 - FRED series observations endpoint: <https://fred.stlouisfed.org/docs/api/fred/series_observations.html>
 - Playwright docs: <https://playwright.dev/docs/intro>
 - Playwright Python docs: <https://playwright.dev/python/docs/intro>
+- Playwright best practices: <https://playwright.dev/docs/best-practices>
 - Playwright codegen: <https://playwright.dev/docs/codegen>
 
 MCP/FRED note checked on 2026-06-24: `agent-harness/mcp/fred/` is a bundled
@@ -92,6 +93,13 @@ stdio MCP example with bounded public FRED search, series metadata, and
 observation tools. It reads `FRED_API_KEY` only from the environment, supports
 offline teaching samples when no key is set, and does not accept arbitrary URLs
 or local file paths.
+
+Playwright note checked on 2026-06-24: the Padova demo uses a local static form
+instead of a live public website so workshop runs are deterministic and
+read-only. The Python setup follows the current docs pattern of installing
+Playwright and browser binaries before running automation. The TypeScript spec
+uses user-facing locators and assertions, following current best-practice
+guidance to test rendered behavior rather than implementation details.
 
 ## Cloud Orchestration Notes
 

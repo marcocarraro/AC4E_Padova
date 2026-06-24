@@ -182,9 +182,10 @@ suggestions.
 Playwright evidence:
 
 ```text
-Read examples/playwright/fill_demo_form.py and examples/web-form/index.html.
-Explain what evidence file the script creates and what row should be added to a
-data source map.
+Read examples/playwright/README.md, examples/playwright/fill_demo_form.py, and
+examples/web-form/index.html. Explain how the script starts and stops the local
+server, what evidence file it creates, and what row should be copied into a data
+source map.
 ```
 
 ## Final Checklist

@@ -36,6 +36,20 @@ Participants may use it to record public macro series metadata, such as `UNRATE`
 in a separate memo or data-source row. That metadata is not part of the bundled
 Card-Krueger teaching panel and does not change the causal caveat above.
 
+## Optional Playwright Evidence Row
+
+Module 4 includes a local Playwright form that records public-source metadata
+without downloading or redistributing raw data:
+
+```bash
+python3 examples/playwright/fill_demo_form.py
+```
+
+The generated `outputs/playwright_form_evidence.md` file contains a row that can
+be copied here or into a participant project data map. The evidence row should
+point to the public Card data page and should not imply that the local form
+downloaded data or produced a causal result.
+
 ## Variables
 
 | Variable | Type | Meaning |

@@ -1,12 +1,12 @@
 {
-  "name": "ac4e-lse-phd-students",
+  "name": "ac4e-padova",
   "version": "0.1.0",
   "private": true,
-  "description": "Four-hour Agentic Coding for Economists short course for LSE PhD students.",
+  "description": "Five-hour Agentic Coding for Economists workshop for Padova participants.",
   "scripts": {
-    "serve:form": "python3 -m http.server 8000 --directory examples/web-form",
-    "pw:codegen": "playwright codegen http://localhost:8000",
-    "pw:test": "playwright test",
+    "serve:form": "python3 -m http.server 8000 --bind 127.0.0.1 --directory examples/web-form",
+    "pw:codegen": "playwright codegen http://127.0.0.1:8000",
+    "pw:test": "playwright test examples/playwright/data_source_form.spec.ts",
     "validate": "python3 scripts/validate_setup.py",
     "docs:prebuild": "python3 scripts/build_site_tabs.py && python3 scripts/build_concepts_site.py",
     "docs:dev": "npm --prefix website run dev",
@@ -14,7 +14,6 @@
     "slides:build": "cd slides/workshop && latexmk -pdf -interaction=nonstopmode workshop_slides.tex"
   },
   "devDependencies": {
-    "@playwright/test": "^1.50.0"
+    "@playwright/test": "^1.61.1"
   }
 }
-

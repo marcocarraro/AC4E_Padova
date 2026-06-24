@@ -3,42 +3,47 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>LSE Economics Research Workflow Intake</title>
+    <title>Padova Public Data Evidence Intake</title>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <main class="shell">
       <section class="panel" id="intro-panel">
         <p class="eyebrow">Agentic Coding for Economists</p>
-        <h1>LSE Economics Research Workflow Intake</h1>
+        <h1>Padova Public Data Evidence Intake</h1>
         <p>
-          Local practice form for Playwright automation. Nothing is submitted to
-          a server.
+          Local practice form for Playwright automation. It records public-source
+          metadata only; nothing is submitted to an external server.
         </p>
         <button id="start-button" type="button">Start</button>
       </section>
 
       <form class="panel hidden" id="workflow-form">
         <fieldset data-step="1">
-          <legend>Project</legend>
-          <label for="project-title">Project title</label>
-          <input id="project-title" name="project-title" type="text" required>
+          <legend>Public source</legend>
+          <label for="source-title">Source title</label>
+          <input id="source-title" name="source-title" type="text" required>
 
-          <label for="field">Field</label>
-          <select id="field" name="field" required>
+          <label for="source-url">URL or path</label>
+          <input id="source-url" name="source-url" type="url" required>
+
+          <label for="access-type">Access type</label>
+          <select id="access-type" name="access-type" required>
             <option value="">Choose one</option>
-            <option>Applied microeconomics</option>
-            <option>Macroeconomics</option>
-            <option>Econometrics</option>
-            <option>Finance</option>
-            <option>Economic theory</option>
+            <option>Public source page</option>
+            <option>Public data readme</option>
+            <option>Public API metadata</option>
+            <option>Local teaching fixture</option>
           </select>
 
-          <div class="checkbox-group" aria-label="Workflow goals">
-            <p>Workflow goals</p>
-            <label><input type="checkbox" name="goals" value="review"> Referee-style review</label>
-            <label><input type="checkbox" name="goals" value="replication"> Replication checklist</label>
-            <label><input type="checkbox" name="goals" value="browser"> Browser automation</label>
+          <label for="variables">Variables or fields</label>
+          <textarea id="variables" name="variables" rows="3"></textarea>
+
+          <div class="checkbox-group" aria-label="Evidence outputs">
+            <p>Evidence outputs</p>
+            <label><input type="checkbox" name="outputs" value="map-row"> Use in data source map</label>
+            <label><input type="checkbox" name="outputs" value="screenshot"> Screenshot is acceptable</label>
+            <label><input type="checkbox" name="outputs" value="no-download"> No raw-data download</label>
           </div>
 
           <button type="button" id="next-button">Next</button>
@@ -46,28 +51,33 @@
 
         <fieldset class="hidden" data-step="2">
           <legend>Review and data boundaries</legend>
-          <label for="review-target">Review target</label>
-          <input id="review-target" name="review-target" type="text" placeholder="e.g. seminar draft introduction">
+          <label for="project">Project</label>
+          <select id="project" name="project">
+            <option>Card-Krueger teaching example</option>
+            <option>Starter article practice repo</option>
+            <option>Participant research project</option>
+          </select>
 
           <label for="data-sensitivity">Data sensitivity</label>
           <select id="data-sensitivity" name="data-sensitivity">
-            <option>Public data only</option>
+            <option>Public metadata only</option>
+            <option>Synthetic teaching data</option>
             <option>Confidential data excluded</option>
             <option>Contains restricted data</option>
           </select>
 
-          <label for="notes">Notes for agent</label>
-          <textarea id="notes" name="notes" rows="4"></textarea>
+          <label for="evidence-note">Evidence note</label>
+          <textarea id="evidence-note" name="evidence-note" rows="4"></textarea>
 
           <button type="button" id="back-button">Back</button>
-          <button type="submit">Submit request</button>
+          <button type="submit">Submit evidence</button>
         </fieldset>
       </form>
 
       <section class="panel hidden" id="confirmation" aria-live="polite">
         <p class="eyebrow">Confirmation</p>
-        <h2>Workshop request received</h2>
-        <p id="confirmation-detail"></p>
+        <h2>Evidence request received</h2>
+        <p id="confirmation-detail" data-testid="confirmation-detail"></p>
         <button type="button" id="reset-button">Start again</button>
       </section>
     </main>
@@ -83,13 +93,13 @@
       document.querySelector("#start-button").addEventListener("click", () => {
         intro.classList.add("hidden");
         form.classList.remove("hidden");
-        document.querySelector("#project-title").focus();
+        document.querySelector("#source-title").focus();
       });
 
       document.querySelector("#next-button").addEventListener("click", () => {
         stepOne.classList.add("hidden");
         stepTwo.classList.remove("hidden");
-        document.querySelector("#review-target").focus();
+        document.querySelector("#project").focus();
       });
 
       document.querySelector("#back-button").addEventListener("click", () => {
@@ -99,10 +109,10 @@
 
       form.addEventListener("submit", (event) => {
         event.preventDefault();
-        const title = document.querySelector("#project-title").value || "Untitled project";
+        const title = document.querySelector("#source-title").value || "Untitled source";
         form.classList.add("hidden");
         confirmation.classList.remove("hidden");
-        detail.textContent = `Saved local workflow request for: ${title}`;
+        detail.textContent = `Saved local evidence row for: ${title}`;
       });
 
       document.querySelector("#reset-button").addEventListener("click", () => {
@@ -115,4 +125,3 @@
     </script>
   </body>
 </html>
-
