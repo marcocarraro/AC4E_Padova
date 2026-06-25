@@ -516,5 +516,84 @@ data/raw/confidential/
   \end{tabular}
 \end{frame}
 
+% =============================================================================
+\section{Autonomous Agents}
+% =============================================================================
+
+\begin{frame}{Autonomous Agents: OpenClaw, Hermes, Eve}
+  \begin{tabular}{p{0.21\textwidth}p{0.32\textwidth}p{0.36\textwidth}}
+    \toprule
+    \textbf{Agent} & \textbf{What to notice} & \textbf{Workshop stance} \\
+    \midrule
+    OpenClaw & Local-first assistant; channels, tools, skills, sandboxing, multi-agent routing & Good for personal-agent and channel-safety discussion; optional reading \\
+    Hermes & Nous Research agent focused on long-running context and user-specific capability growth & Useful for memory, persistence, and ownership of research context \\
+    Eve & Vercel framework for building agents with instructions, skills, tools, sandboxes, channels, subagents, schedules & Use only after checking current docs and access boundaries \\
+    \bottomrule
+  \end{tabular}
+  \vspace{0.6em}
+  {\small\textbf{Rule:} More autonomy means more need for logs, review gates, and reproducibility evidence.}
+\end{frame}
+
+\begin{frame}{Autonomous-Agent Risk Card}
+  Fill one risk card before letting any autonomous agent touch a research repo:
+  \begin{itemize}
+    \item \textbf{Read boundary:} what files, channels, or data can it inspect?
+    \item \textbf{Write boundary:} what can it edit, trigger, schedule, or publish?
+    \item \textbf{Memory:} what state persists across sessions, and who controls it?
+    \item \textbf{Execution:} local, cloud, sandbox, or production system?
+    \item \textbf{Review gate:} what human approval is required before outputs enter the repo?
+    \item \textbf{Evidence:} what logs, diffs, commands, or replication outputs prove what happened?
+  \end{itemize}
+  \vspace{0.4em}
+  \textbf{Artifact:} \artifact{agent-harness/autonomous\_agent\_risk\_card.md} {\small (see \ParentCourseUrl)}
+\end{frame}
+
+\begin{frame}{Risk Card Decision}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.48\textwidth}
+      \textbf{Approve only if you can answer:}
+      \begin{itemize}
+        \item \textbf{Read}: \textnormal{what can it inspect?}
+        \item \textbf{Write}: \textnormal{what can it edit, trigger, publish, or schedule?}
+        \item \textbf{Memory}: \textnormal{what persists and who controls it?}
+        \item \textbf{Execution}: \textnormal{local, sandbox, cloud, production, or mixed?}
+        \item \textbf{Evidence}: \textnormal{which logs, diffs, transcripts, or outputs prove what happened?}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \textbf{Decision labels}
+      \begin{itemize}
+        \item \textnormal{Safe for read-only use.}
+        \item \textnormal{Safe for branch-isolated write use.}
+        \item \textnormal{Not safe for this workshop repo.}
+        \item \textnormal{Needs more documentation before use.}
+      \end{itemize}
+      \vspace{0.3em}
+      \textbf{Rule}: \textnormal{do not connect private data unless every boundary and approval gate is acceptable.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Map New Agents Back to the Harness}
+  \begin{center}
+    \small
+    \begin{tabular}{ll}
+      \toprule
+      \textbf{Autonomous-agent feature} & \textbf{Course harness equivalent} \\
+      \midrule
+      Markdown instructions & \artifact{AGENTS.md}, \artifact{CLAUDE.md}, Cursor rules \\
+      Skills / tools & \artifact{SKILL.md}, MCP tools, validation scripts \\
+      Postconditions & Hooks, CI, verification commands \\
+      Task memory & Goal files, GitHub issues, orchestration log \\
+      Channels / schedules & GitHub issues, CI, scheduled checks \\
+      Subagents / workers & data-reviewer, literature-reviewer, loop-verifier \\
+      Sandbox & Branch, worktree, remote runner, protected main \\
+      Logs & PR description, orchestration log, replication README \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \vspace{0.45em}
+  \textbf{Teaching point:} The architecture transfers; the UI changes.
+\end{frame}
 
 \end{document}
