@@ -10,6 +10,8 @@ The repository started from `AC4E_LSE_PhD_Students` and is being adapted using
 slides, and harnesses must all point to the Padova session and to the
 Card-Krueger running example.
 
+If you are in doubt about the details of the project, refer to @templates/project_brief.md and @templates/research_design_memo.md. 
+
 ## Scope Rules
 
 - Keep this repository participant-facing.
